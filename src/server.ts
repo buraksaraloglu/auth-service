@@ -6,7 +6,8 @@ import cors from 'cors';
 import initRouter from '@/routes/router';
 import swaggerDocs from './utils/swagger';
 import log from './utils/logger';
-// import connectDB from '@/database/database';
+import deserializeUser from './middleware/deserializeUser';
+import connectDB from '@/database/database';
 
 const app = express();
 
@@ -14,14 +15,15 @@ const app = express();
 app.use(cors());
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
+app.use(deserializeUser);
 
 app.set('port', process.env.APP_PORT || 5000);
 
-//connectDB();
+connectDB();
 initRouter(app);
 
 app.listen(app.get('port'), () => {
-  swaggerDocs(app, app.get('port'));
+  swaggerDocs(app);
 
   log.info(
     '🚀 App is running at http://localhost:%d in %s mode',

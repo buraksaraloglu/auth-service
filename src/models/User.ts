@@ -1,17 +1,15 @@
 import { Document, model, Schema } from 'mongoose';
+import { hashSync, compare } from 'bcrypt';
 
-/**
- * User interface
- * @param email:string
- * @param password:string
- * @param createdAt:Date
- * @param updatedAt:Date
- */
-export interface IUser extends Document {
+export interface UserInput {
   email: string;
   password: string;
+}
+
+export interface UserDocument extends UserInput, Document {
   createdAt: Date;
   updatedAt: Date;
+  comparePassword(candidatePassword: string): Promise<Boolean>;
 }
 
 const userSchema: Schema = new Schema(
@@ -19,6 +17,7 @@ const userSchema: Schema = new Schema(
     email: {
       type: String,
       required: true,
+      unique: true,
     },
     password: {
       type: String,
@@ -30,6 +29,18 @@ const userSchema: Schema = new Schema(
   },
 );
 
-const User = model<IUser>('User', userSchema);
+userSchema.methods.comparePassword = async function (
+  candidatePassword: string,
+): Promise<boolean> {
+  const user = this as UserDocument;
 
-export default User;
+  try {
+    return await compare(candidatePassword, user.password);
+  } catch (error: any) {
+    return false;
+  }
+};
+
+const UserModel = model<UserDocument>('User', userSchema);
+
+export default UserModel;

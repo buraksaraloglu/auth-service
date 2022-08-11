@@ -1,30 +1,34 @@
 import express from 'express';
-import { register } from '@/controllers/auth.controller';
+
+import { createUserController } from '@/controllers/auth.controller';
+import validateResource from '@/middleware/validateResource';
+import { createUserSchema } from '@/schema/user.schema';
 
 const router = express.Router();
 
 /**
  * @openapi
- * @summary Register a new user
- * @description Register a new user
- * @tags auth
- * @produces application/json
- * @consumes application/json
- * @parameters
- * - in: body
- *  name: body
- * description: User object
- * required: true
- * schema:
- * $ref: '#/models/User'
- * @responses
- * 200:
- * description: User object
- * schema:
- * $ref: '#/models/User'
- * @securityDefinitions.bearerAuth
+ * '/auth/users':
+ *  post:
+ *     tags:
+ *     - User
+ *     summary: Register a user
+ *     requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *           schema:
+ *              $ref: '#/components/schemas/CreateUserInput'
+ *     responses:
+ *      200:
+ *        description: Success
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/CreateUserResponse'
+ *      400:
+ *        description: Bad request
  */
-
-router.post('/register', register);
+router.post('/users', validateResource(createUserSchema), createUserController);
 
 export default router;

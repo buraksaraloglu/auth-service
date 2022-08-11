@@ -32,12 +32,17 @@ const options: swaggerJsdoc.Options = {
       },
     ],
   },
-  apis: ['./src/routes.ts', './src/schema/*.ts'],
+  apis: ['./src/routes/*.ts', './src/schema/*.ts'],
 };
 
 const swaggerSpec = swaggerJsdoc(options);
 
-function swaggerDocs(app: Express, port: number) {
+function swaggerDocs(app: Express) {
+  const port = app.get('port');
+  if (!port) {
+    throw new Error('[swaggerDocs]; Port is not set');
+  }
+
   // Swagger page
   app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 

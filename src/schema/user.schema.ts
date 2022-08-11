@@ -1,4 +1,4 @@
-import { object, string, TypeOf } from 'zod';
+import { z } from 'zod';
 
 /**
  * @openapi
@@ -28,19 +28,25 @@ import { object, string, TypeOf } from 'zod';
  *        updatedAt:
  *          type: string
  */
-
-export const createUserSchema = object({
-  body: object({
-    password: string({
-      required_error: 'Name is required',
-    }).min(6, 'Password too short - should be 6 chars minimum'),
-    email: string({
-      required_error: 'Email is required',
-    }).email('Not a valid email'),
+export const createUserSchema = z.object({
+  body: z.object({
+    email: z
+      .string({
+        description: 'Email of the user',
+        required_error: 'Email is required',
+      })
+      .trim()
+      .email({ message: 'Invalid email address' }),
+    password: z
+      .string({
+        description: 'Password must be at least 8 characters long',
+        required_error: 'Password is required',
+      })
+      .trim()
+      .min(8, {
+        message: 'Password must be at least 8 characters',
+      }),
   }),
 });
 
-export type CreateUserInput = Omit<
-  TypeOf<typeof createUserSchema>,
-  'body.passwordConfirmation'
->;
+export type CreateUserInput = z.infer<typeof createUserSchema>;

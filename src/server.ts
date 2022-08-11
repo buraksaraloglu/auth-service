@@ -3,11 +3,11 @@ import bodyparser from 'body-parser';
 import express from 'express';
 import cors from 'cors';
 
-import initRouter from '@/routes/router';
+import initRouter from './routes/router';
 import swaggerDocs from './utils/swagger';
 import log from './utils/logger';
 import deserializeUser from './middleware/deserializeUser';
-import connectDB from '@/database/database';
+import connectDB from './database/database';
 
 const app = express();
 

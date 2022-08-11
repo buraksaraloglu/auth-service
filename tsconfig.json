@@ -9,9 +9,8 @@
     "noImplicitAny": true,
     "removeComments": true,
     "outDir": "dist",
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
-      "*": ["node_modules/*", "src/types/*"],
       "@/*": ["./src/*"]
     }
   },

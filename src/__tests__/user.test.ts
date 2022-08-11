@@ -30,8 +30,6 @@ const sessionPayload = {
 };
 
 describe('user', () => {
-  // user registration
-
   describe('user registration', () => {
     describe('given the username and password are valid', () => {
       it('should return the user payload', async () => {
@@ -49,6 +47,62 @@ describe('user', () => {
         expect(body).toEqual(userPayload);
 
         expect(createUserServiceMock).toHaveBeenCalledWith(userInput);
+      });
+
+      it('should return 400 if user exists', async () => {
+        const createUserServiceMock = jest
+          .spyOn(UserService, 'createUser')
+          // @ts-ignore
+          .mockRejectedValueOnce(new Error('User already exists'));
+
+        const { statusCode, body } = await supertest(app)
+          .post('/auth/users')
+          .send(userInput);
+
+        expect(statusCode).toBe(400);
+
+        expect(body).toEqual({
+          message: 'User already exists',
+        });
+
+        expect(createUserServiceMock).toHaveBeenCalledWith(userInput);
+      });
+
+      it('should return 400 if email is invalid', async () => {
+        const invalidRequest = {
+          ...userInput,
+          email: 'invalid email',
+        };
+
+        const { statusCode, body } = await supertest(app)
+          .post('/auth/users')
+          .send(invalidRequest);
+
+        expect(statusCode).toBe(400);
+
+        const errors = body;
+        expect(errors).toHaveLength(1);
+
+        expect(errors[0].message).toEqual('Invalid email address');
+      });
+
+      it('should return 400 if password is invalid', async () => {
+        const invalidRequest = {
+          ...userInput,
+          password: '123',
+        };
+        const { statusCode, body } = await supertest(app)
+          .post('/auth/users')
+          .send(invalidRequest);
+
+        expect(statusCode).toBe(400);
+
+        const errors = body;
+        expect(errors).toHaveLength(1);
+
+        expect(errors[0].message).toEqual(
+          'Password must be at least 8 characters',
+        );
       });
     });
 

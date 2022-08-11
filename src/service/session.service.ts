@@ -1,6 +1,6 @@
 import { FilterQuery, UpdateQuery } from 'mongoose';
 
-import SessionModel, { SessionDocument } from '../models/session';
+import SessionModel, { SessionDocument } from '../models/Session';
 import { verifyJwt, signJwt } from '../utils/jwt';
 import { findUser } from './user.service';
 

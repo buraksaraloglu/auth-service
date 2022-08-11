@@ -43,8 +43,8 @@
   },
   "scripts": {
     "tsc": "tsc && tsc-alias",
-    "start": "node dist/server.js",
-    "clean": "rimraf dist/",
+    "start": "node dist",
+    "clean": "rimraf dist",
     "compile": "run-s clean tsc start | pino-pretty",
     "dev": "nodemon",
     "build": "run-s clean tsc",

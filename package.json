@@ -42,7 +42,7 @@
     "typescript": "~4.5.4"
   },
   "scripts": {
-    "tsc": "tsc && tsc-alias",
+    "tsc": "tsc",
     "start": "node dist/server.js",
     "clean": "rimraf dist/",
     "compile": "run-s clean tsc start | pino-pretty",

@@ -47,7 +47,7 @@
     "clean": "rimraf dist/",
     "compile": "run-s clean tsc start | pino-pretty",
     "dev": "nodemon",
-    "build": "run-s clean tsc",
+    "build": "tsc",
     "test": "jest"
   }
 }

@@ -11,8 +11,8 @@
     "outDir": "dist",
     "baseUrl": "./",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["api/*"]
     }
   },
-  "include": ["src/**/*"]
+  "include": ["api/**/*"]
 }

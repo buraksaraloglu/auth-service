@@ -23,7 +23,7 @@
               }
             },
             "url": {
-              "raw": "{{endpoint}}/api/users",
+              "raw": "{{endpoint}}/users",
               "host": ["{{endpoint}}"],
               "path": ["api", "users"]
             }
@@ -37,7 +37,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
+                  "const jsonData = JSON.parse(responseBody);",
                   "console.log(jsonData)",
                   "postman.setEnvironmentVariable(\"accessToken\", jsonData.accessToken);",
                   "postman.setEnvironmentVariable(\"refreshToken\", jsonData.refreshToken);"
@@ -59,7 +59,7 @@
               }
             },
             "url": {
-              "raw": "{{endpoint}}/api/sessions",
+              "raw": "{{endpoint}}/sessions",
               "host": ["{{endpoint}}"],
               "path": ["api", "sessions"]
             }
@@ -107,7 +107,7 @@
               }
             ],
             "url": {
-              "raw": "{{endpoint}}/api/sessions",
+              "raw": "{{endpoint}}/sessions",
               "host": ["{{endpoint}}"],
               "path": ["api", "sessions"]
             }
@@ -154,7 +154,7 @@
               }
             ],
             "url": {
-              "raw": "{{endpoint}}/api/sessions",
+              "raw": "{{endpoint}}/sessions",
               "host": ["{{endpoint}}"],
               "path": ["api", "sessions"]
             }
@@ -201,11 +201,11 @@
     },
     {
       "key": "accessToken",
-      "value": "<accessToken will be set when you create a session>"
+      "value": ""
     },
     {
       "key": "refreshToken",
-      "value": "<refreshToken will be set when you create a session>"
+      "value": ""
     },
     {
       "key": "endpoint",

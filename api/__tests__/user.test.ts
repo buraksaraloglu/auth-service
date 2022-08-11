@@ -39,7 +39,7 @@ describe('user', () => {
           .mockReturnValueOnce(userPayload);
 
         const { statusCode, body } = await supertest(app)
-          .post('/auth/users')
+          .post('/api/v1/auth/users')
           .send(userInput);
 
         expect(statusCode).toBe(200);
@@ -56,7 +56,7 @@ describe('user', () => {
           .mockRejectedValueOnce(new Error('User already exists'));
 
         const { statusCode, body } = await supertest(app)
-          .post('/auth/users')
+          .post('/api/v1/auth/users')
           .send(userInput);
 
         expect(statusCode).toBe(400);
@@ -75,7 +75,7 @@ describe('user', () => {
         };
 
         const { statusCode, body } = await supertest(app)
-          .post('/auth/users')
+          .post('/api/v1/auth/users')
           .send(invalidRequest);
 
         expect(statusCode).toBe(400);
@@ -92,7 +92,7 @@ describe('user', () => {
           password: '123',
         };
         const { statusCode, body } = await supertest(app)
-          .post('/auth/users')
+          .post('/api/v1/auth/users')
           .send(invalidRequest);
 
         expect(statusCode).toBe(400);
@@ -113,7 +113,7 @@ describe('user', () => {
           .mockRejectedValueOnce('Oh no! :(');
 
         const { statusCode } = await supertest(createServer())
-          .post('/auth/users')
+          .post('/api/v1/auth/users')
           .send(userInput);
 
         expect(statusCode).toBe(400);

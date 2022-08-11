@@ -8,11 +8,11 @@ module.exports = {
   clearMocks: true,
   resetMocks: true,
   restoreMocks: true,
-  roots: ['<rootDir>/src'],
+  roots: ['<rootDir>/api'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
   moduleNameMapper: {
-    '@/(.*)': '<rootDir>/src/$1',
+    '@/(.*)': '<rootDir>/api/$1',
   },
 };

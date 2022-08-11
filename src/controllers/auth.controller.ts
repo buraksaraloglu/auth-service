@@ -15,6 +15,6 @@ export const createUserController = async (
 
     return res.send(user);
   } catch (e: any) {
-    return res.status(500).send(e.message);
+    return res.status(400).send(e.message);
   }
 };

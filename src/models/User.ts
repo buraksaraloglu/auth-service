@@ -1,5 +1,5 @@
 import { Document, model, Schema } from 'mongoose';
-import { hashSync, compare } from 'bcrypt';
+import { compare } from 'bcrypt';
 
 export interface UserInput {
   email: string;

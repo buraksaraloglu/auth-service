@@ -12,10 +12,10 @@ import { z } from 'zod';
  *      properties:
  *        email:
  *          type: string
- *          default: jane.doe@example.com
+ *          description: jane.doe@example.com
  *        password:
  *          type: string
- *          default: stringPassword123
+ *          description: stringPassword123
  *    CreateUserResponse:
  *      type: object
  *      properties:

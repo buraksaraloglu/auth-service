@@ -26,7 +26,7 @@ app.listen(app.get('port'), () => {
   swaggerDocs(app);
 
   log.info(
-    '🚀 App is running at http://localhost:%d in %s mode',
+    `🚀 Auth Service is running at http://localhost:%d in %s mode`,
     app.get('port'),
     app.get('env'),
   );

@@ -7,7 +7,7 @@ const options: swaggerJsdoc.Options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Movies Auth API',
+      title: 'Movies Auth Service',
       version: '0.1.0',
       description:
         'This is a sample authentication server. It validates a user token and returns a user object.',

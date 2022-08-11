@@ -4,8 +4,8 @@ Authentication service with jwt tokens.
 
 ### Dependencies
 
-[NodeJS](https://nodejs.org/en/)
-[MongoDB](https://www.mongodb.com/)
+- [NodeJS](https://nodejs.org/en/)
+- [MongoDB](https://www.mongodb.com/)
 
 ### Installation
 

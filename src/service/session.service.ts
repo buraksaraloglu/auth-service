@@ -1,7 +1,7 @@
 import { FilterQuery, UpdateQuery } from 'mongoose';
 
-import SessionModel, { SessionDocument } from '../models/Session';
-import { verifyJwt, signJwt } from '../utils/jwt';
+import SessionModel, { SessionDocument } from '@/models/Session';
+import { verifyJwt, signJwt } from '@/utils/jwt';
 import { findUser } from './user.service';
 
 export async function createSession(userId: string, userAgent: string) {

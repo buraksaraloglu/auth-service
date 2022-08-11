@@ -4,9 +4,9 @@ import {
   createSession,
   findSessions,
   updateSession,
-} from '../service/session.service';
-import { validatePassword } from '../service/user.service';
-import { signJwt } from '../utils/jwt';
+} from '@/service/session.service';
+import { validatePassword } from '@/service/user.service';
+import { signJwt } from '@/utils/jwt';
 
 export async function createUserSessionController(req: Request, res: Response) {
   const user = await validatePassword(req.body);

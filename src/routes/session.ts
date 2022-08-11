@@ -4,10 +4,10 @@ import {
   createUserSessionController,
   getUserSessionsController,
   deleteSessionController,
-} from '../controllers/session.controller';
-import validateResource from '../middleware/validateResource';
-import requireUser from '../middleware/requireUser';
-import { createSessionSchema } from '../schema/session.schema';
+} from '@/controllers/session.controller';
+import validateResource from '@/middleware/validateResource';
+import requireUser from '@/middleware/requireUser';
+import { createSessionSchema } from '@/schema/session.schema';
 
 const router = express.Router();
 

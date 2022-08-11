@@ -1,8 +1,8 @@
 import express from 'express';
 
-import { createUserController } from '../controllers/auth.controller';
-import validateResource from '../middleware/validateResource';
-import { createUserSchema } from '../schema/user.schema';
+import { createUserController } from '@/controllers/auth.controller';
+import validateResource from '@/middleware/validateResource';
+import { createUserSchema } from '@/schema/user.schema';
 
 const router = express.Router();
 

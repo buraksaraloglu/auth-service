@@ -1,9 +1,9 @@
 import { FilterQuery } from 'mongoose';
 
-import UserModel, { UserDocument, UserInput } from '../models/User';
-import { MONGO_ERROR_CODES } from '../utils/mongoErrorCodes';
-import { omit } from '../utils/helpers';
-import { hashPassword } from '../utils/jwt';
+import UserModel, { UserDocument, UserInput } from '@/models/User';
+import { MONGO_ERROR_CODES } from '@/utils/mongoErrorCodes';
+import { omit } from '@/utils/helpers';
+import { hashPassword } from '@/utils/jwt';
 
 export const createUser = async (input: UserInput) => {
   try {

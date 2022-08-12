@@ -33,6 +33,6 @@ const router = express.Router();
  *        description: Bad request
  */
 router.post('/users', validateResource(createUserSchema), createUserController);
-router.get('/user', validateResource(getUserSchema), getUserController);
+router.get('/user', getUserController);
 
 export default router;

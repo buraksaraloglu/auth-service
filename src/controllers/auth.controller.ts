@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 import { CreateUserInput } from '@/schema/user.schema';
 import { createUser } from '@/service/user.service';
-import { getAuthorizationTokens } from '@/utils/helpers';
+import { getAuthorizationTokens, omit } from '@/utils/helpers';
 import { findSessions } from '@/service/session.service';
 
 export const createUserController = async (
@@ -24,8 +24,16 @@ export const createUserController = async (
 export const getUserController = async (req: Request, res: Response) => {
   try {
     const user = res.locals.user;
-    return res.send(user);
+
+    if (!user) {
+      if (res.locals.userExpired)
+        return res.status(400).send({ message: 'jwt token is expired' });
+
+      return res.status(400).send({ message: 'jwt token is invalid' });
+    }
+
+    return res.send(omit(user, 'password'));
   } catch (e: any) {
-    return res.status(500).send({ message: e.message || 'Unknown error' });
+    return res.status(401).send({ message: 'Token expired' });
   }
 };

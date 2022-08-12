@@ -30,6 +30,7 @@ const deserializeUser = async (
   }
 
   if (expired && refreshToken) {
+    res.locals.userExpired = true;
     const newAccessToken = await reIssueAccessToken({
       refreshToken: Array.isArray(refreshToken)
         ? refreshToken[0]

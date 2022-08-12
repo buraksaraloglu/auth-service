@@ -49,4 +49,21 @@ export const createUserSchema = z.object({
   }),
 });
 
+export const getUserSchema = z.object({
+  headers: z.object({
+    authorization: z
+      .string({
+        description: 'Authorization token',
+      })
+      .trim()
+      .startsWith('Bearer ', { message: 'Invalid authorization token' }),
+    'x-refresh': z
+      .string({
+        description: 'Refresh token',
+      })
+      .trim(),
+  }),
+});
+
 export type CreateUserInput = z.infer<typeof createUserSchema>;
+export type GetUserInput = z.infer<typeof getUserSchema>;

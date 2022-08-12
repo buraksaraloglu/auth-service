@@ -1,8 +1,11 @@
 import express from 'express';
 
-import { createUserController } from '@/controllers/auth.controller';
+import {
+  createUserController,
+  getUserController,
+} from '@/controllers/auth.controller';
+import { createUserSchema, getUserSchema } from '@/schema/user.schema';
 import validateResource from '@/middleware/validateResource';
-import { createUserSchema } from '@/schema/user.schema';
 
 const router = express.Router();
 
@@ -30,5 +33,6 @@ const router = express.Router();
  *        description: Bad request
  */
 router.post('/users', validateResource(createUserSchema), createUserController);
+router.get('/user/:id', validateResource(getUserSchema), getUserController);
 
 export default router;

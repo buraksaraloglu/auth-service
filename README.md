@@ -73,7 +73,7 @@ curl --location --request POST '<service-uri>/sessions' \
 # GET /sessions
 
 curl --location --request GET 'http://localhost:5000/sessions' \
-  --header 'x-refresh: <refreshToken in create session response>' \
+  --header 'x-refresh-token: <refreshToken in create session response>' \
   --header 'Authorization: Bearer <accessToken in create session response>'
 ```
 
@@ -83,6 +83,6 @@ curl --location --request GET 'http://localhost:5000/sessions' \
 # DELETE /sessions
 
 curl --location --request DELETE 'http://localhost:5000/sessions' \
-  --header 'x-refresh: <refreshToken in create session response>' \
+  --header 'x-refresh-token: <refreshToken in create session response>' \
   --header 'Authorization: Bearer <accessToken in create session response>'
 ```

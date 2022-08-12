@@ -57,7 +57,7 @@ export const getUserSchema = z.object({
       })
       .trim()
       .startsWith('Bearer ', { message: 'Invalid authorization token' }),
-    'x-refresh': z
+    'x-refresh-token': z
       .string({
         description: 'Refresh token',
       })
